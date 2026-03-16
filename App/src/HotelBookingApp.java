@@ -2,16 +2,16 @@ public class HotelBookingApp {
 
     public static void main(String[] args) {
 
-        RoomInventory inventory = new RoomInventory();
+        BookingRequestQueue requestQueue = new BookingRequestQueue();
 
-        Room[] rooms = {
-            new SingleRoom(),
-            new DoubleRoom(),
-            new SuiteRoom()
-        };
+        Reservation r1 = new Reservation("Alice", "Single Room");
+        Reservation r2 = new Reservation("Bob", "Double Room");
+        Reservation r3 = new Reservation("Charlie", "Suite Room");
 
-        SearchService search = new SearchService(inventory);
+        requestQueue.addRequest(r1);
+        requestQueue.addRequest(r2);
+        requestQueue.addRequest(r3);
 
-        search.searchAvailableRooms(rooms);
+        requestQueue.displayQueue();
     }
 }
