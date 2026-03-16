@@ -11,19 +11,13 @@ public class BookingRequestQueue {
 
     public void addRequest(Reservation reservation) {
         queue.add(reservation);
-        System.out.println("Request added to queue for " + reservation.getGuestName());
     }
 
-    public void displayQueue() {
+    public Reservation dequeueRequest() {
+        return queue.poll();
+    }
 
-        System.out.println("======================================");
-        System.out.println("        BOOKING REQUEST QUEUE         ");
-        System.out.println("======================================");
-
-        for (Reservation r : queue) {
-            r.displayRequest();
-        }
-
-        System.out.println("======================================");
+    public boolean hasRequests() {
+        return !queue.isEmpty();
     }
 }
