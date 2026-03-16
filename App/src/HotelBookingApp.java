@@ -1,28 +1,19 @@
 public class HotelBookingApp {
+
     public static void main(String[] args) {
 
-        Room single = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suite = new SuiteRoom();
+        RoomInventory inventory = new RoomInventory();
 
-        int singleAvailable = 5;
-        int doubleAvailable = 3;
-        int suiteAvailable = 2;
+        inventory.displayInventory();
 
-        System.out.println("======================================");
-        System.out.println("        HOTEL ROOM AVAILABILITY       ");
-        System.out.println("======================================");
+        System.out.println("\nChecking availability for Single Room...");
+        int available = inventory.getAvailability("Single Room");
+        System.out.println("Single Room Available: " + available);
 
-        single.displayDetails();
-        System.out.println("Available : " + singleAvailable);
-        System.out.println("--------------------------------------");
+        System.out.println("\nUpdating availability...");
+        inventory.updateAvailability("Single Room", available - 1);
 
-        doubleRoom.displayDetails();
-        System.out.println("Available : " + doubleAvailable);
-        System.out.println("--------------------------------------");
-
-        suite.displayDetails();
-        System.out.println("Available : " + suiteAvailable);
-        System.out.println("======================================");
+        System.out.println("\nUpdated Inventory:");
+        inventory.displayInventory();
     }
 }
