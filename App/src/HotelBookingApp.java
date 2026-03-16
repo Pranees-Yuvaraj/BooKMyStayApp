@@ -2,21 +2,18 @@ public class HotelBookingApp {
 
     public static void main(String[] args) {
 
-        RoomInventory inventory = new RoomInventory();
+        Reservation reservation = new Reservation("RES-101", "Alice", "Single Room");
 
-        BookingRequestQueue queue = new BookingRequestQueue();
+        AddOnService breakfast = new AddOnService("Breakfast", 20);
+        AddOnService airportPickup = new AddOnService("Airport Pickup", 40);
+        AddOnService spa = new AddOnService("Spa Access", 60);
 
-        queue.addRequest(new Reservation("Alice", "Single Room"));
-        queue.addRequest(new Reservation("Bob", "Double Room"));
-        queue.addRequest(new Reservation("Charlie", "Suite Room"));
-        queue.addRequest(new Reservation("David", "Suite Room"));
+        AddOnServiceManager manager = new AddOnServiceManager();
 
-        BookingService bookingService = new BookingService(inventory);
+        manager.addService(reservation.getReservationId(), breakfast);
+        manager.addService(reservation.getReservationId(), airportPickup);
+        manager.addService(reservation.getReservationId(), spa);
 
-        bookingService.processRequests(queue);
-
-        System.out.println("\nUpdated Inventory:");
-
-        inventory.displayInventory();
+        manager.displayServices(reservation.getReservationId());
     }
 }
