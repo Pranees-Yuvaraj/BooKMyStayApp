@@ -2,16 +2,21 @@ public class HotelBookingApp {
 
     public static void main(String[] args) {
 
-        BookingRequestQueue requestQueue = new BookingRequestQueue();
+        RoomInventory inventory = new RoomInventory();
 
-        Reservation r1 = new Reservation("Alice", "Single Room");
-        Reservation r2 = new Reservation("Bob", "Double Room");
-        Reservation r3 = new Reservation("Charlie", "Suite Room");
+        BookingRequestQueue queue = new BookingRequestQueue();
 
-        requestQueue.addRequest(r1);
-        requestQueue.addRequest(r2);
-        requestQueue.addRequest(r3);
+        queue.addRequest(new Reservation("Alice", "Single Room"));
+        queue.addRequest(new Reservation("Bob", "Double Room"));
+        queue.addRequest(new Reservation("Charlie", "Suite Room"));
+        queue.addRequest(new Reservation("David", "Suite Room"));
 
-        requestQueue.displayQueue();
+        BookingService bookingService = new BookingService(inventory);
+
+        bookingService.processRequests(queue);
+
+        System.out.println("\nUpdated Inventory:");
+
+        inventory.displayInventory();
     }
 }
